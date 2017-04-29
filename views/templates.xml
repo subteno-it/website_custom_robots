@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        ##############################################################################
-        #
-        #    website_custom_robots module for OpenERP, Allows to customize the robots.txt file per website
-        #    Copyright (C) 2016 SYLEAM Info Services ([http://www.Syleam.fr/])
-        #              Sylvain Garancher [sylvain.garancher@syleam.fr]
-        #
-        #    This file is a part of website_custom_robots
-        #
-        #    website_custom_robots is free software: you can redistribute it and/or modify
-        #    it under the terms of the GNU Affero General Public License as published by
-        #    the Free Software Foundation, either version 3 of the License, or
-        #    (at your option) any later version.
-        #
-        #    website_custom_robots is distributed in the hope that it will be useful,
-        #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-        #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        #    GNU Affero General Public License for more details.
-        #
-        #    You should have received a copy of the GNU Affero General Public License
-        #    along with this program.  If not, see [http://www.gnu.org/licenses/].
-        #
-        ##############################################################################
-
-        <template id="robots" inherit_id="website.robots">
-            <xpath expr="." position="replace">
-                <t t-name="website.robots"><t t-set="website_robots" t-value="request.registry['website'].get_current_website(request.cr, request.uid, context=request.context).robots"/><t t-if="not website_robots"><t t-call="website_custom_robots.default"/></t><t t-if="website_robots"><t t-raw="website_robots"/></t></t>
-            </xpath>
-        </template>
-        <template id="default">User-agent: *
+<!--
+    Copyright 2016 SYLEAM Info Services
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <template id="robots" inherit_id="website.robots">
+        <xpath expr="." position="replace">
+            <t t-name="website.robots"><t t-set="website_robots" t-value="request.registry['website'].get_current_website(request.cr, request.uid, context=request.context).robots"/><t t-if="not website_robots"><t t-call="website_custom_robots.default"/></t><t t-if="website_robots"><t t-raw="website_robots"/></t></t>
+        </xpath>
+    </template>
+    <template id="default">User-agent: *
 Sitemap: <t t-esc="url_root"/>sitemap.xml</template>
-    </data>
-</openerp>
+</odoo>
