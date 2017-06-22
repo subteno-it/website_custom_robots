@@ -6,7 +6,7 @@
 <odoo>
     <template id="robots" inherit_id="website.robots">
         <xpath expr="." position="replace">
-            <t t-name="website.robots"><t t-set="website_robots" t-value="request.registry['website'].get_current_website(request.cr, request.uid, context=request.context).robots"/><t t-if="not website_robots"><t t-call="website_custom_robots.default"/></t><t t-if="website_robots"><t t-raw="website_robots"/></t></t>
+            <t t-name="website.robots"><t t-set="website_robots" t-value="request.env['website'].get_current_website().robots"/><t t-if="not website_robots"><t t-call="website_custom_robots.default"/></t><t t-if="website_robots"><t t-raw="website_robots"/></t></t>
         </xpath>
     </template>
     <template id="default">User-agent: *
